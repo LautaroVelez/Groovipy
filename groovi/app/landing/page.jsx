@@ -3,6 +3,7 @@ import {Button} from "@nextui-org/button";
 import Image from 'next/image';
 import gif from '../../public/gif.gif';
 import {Pacifico} from 'next/font/google';
+import Link from 'next/link'
 
 const pacifico = Pacifico({
     weight: '400',
@@ -41,7 +42,7 @@ export default function Landing() {
                         unoptimized
                     />
                 </div>
-                <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPES}`}>Login to Spotify</a>
+                <Link href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPES}`}><Button size={"lg"} color={"success"}>Go fot it</Button></Link>
             </div>
         </div>
     );

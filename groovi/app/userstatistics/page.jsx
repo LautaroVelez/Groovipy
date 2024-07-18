@@ -3,12 +3,19 @@ import axios from 'axios';
 import {useEffect, useState} from 'react';
 import {Button} from "@nextui-org/button";
 import {Spinner} from "@nextui-org/react";
+import {Select, SelectItem} from "@nextui-org/react";
 
-export default function UserStatistics() {
+export default function UserStats() {
     const [token, setToken] = useState("");
     const [user, setUser] = useState({});
     const [error, setError] = useState(null);
     const [topArtists, setTopArtists] = useState([]);
+
+    const types = [{
+        key: "artist", label: "Artist"
+    }, {
+        key: 'tracks', label: 'Tracks'
+    }]
 
     const CLIENT_ID = "9e21c2f01ec54a98aeed0aa8bc9c2c11";
     const REDIRECT_URI = "http://localhost:3000/userstatistics";
@@ -55,7 +62,7 @@ export default function UserStatistics() {
 
         const getUserTopArtists = async () => {
             try {
-                const {data} = await axios.get("https://api.spotify.com/v1/me/top/artists?time_range=short_term&limit=10&offset=0", {
+                const {data} = await axios.get("https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=50&offset=0", {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -81,22 +88,32 @@ export default function UserStatistics() {
 
     return (
         <div className="text-center">
-            <h1>Display your Spotify profile data</h1>
             {error ? (
                 <h2>Error: {error}</h2>
             ) : (
                 <>
-                    <h2>Logged in as {user.display_name}</h2>
+                    <h2>Welcome {user.display_name}!</h2>
                     {user.images && user.images.length > 0 ? (
-                        <img width={'200px'} height={'200px'} src={user.images[0].url} alt={'avatar'}/>
+                        <img width={'50px'} height={'50px'} src={user.images[0].url} alt={'avatar'}/>
                     ) : (<h1>No image</h1>)}
 
-                    <h1>Top Artists (Short Term)</h1>
+                    <Select
+                        label="Artist or Track"
+                        className="max-w-xs"
+                    >
+                        {types.map((type) => (
+                            <SelectItem key={type.key}>
+                                {type.label}
+                            </SelectItem>
+                        ))}
+                    </Select>
+
+
                     {topArtists.map((artist, index) => (
                         <div key={index}>
                             <h2>{artist.name}</h2>
                             {artist.images && artist.images.length > 0 ? (
-                                <img width={'200px'} height={'200px'} src={artist.images[0].url} alt={'artist avatar'}/>
+                                <img width={'100px'} height={'100px'} src={artist.images[0].url} alt={'artist avatar'}/>
                             ) : (
                                 <h3>No image</h3>
                             )}
