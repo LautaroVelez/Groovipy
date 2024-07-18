@@ -5,7 +5,7 @@ import gif from '../../public/gif.gif';
 import {Pacifico} from 'next/font/google';
 import Link from 'next/link'
 
-const pacifico = Pacifico({
+export const pacifico = Pacifico({
     weight: '400',
     subsets: ['latin'],
 });

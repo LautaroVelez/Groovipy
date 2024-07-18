@@ -5,6 +5,7 @@ import {Button} from "@nextui-org/button";
 import {Spinner} from "@nextui-org/react";
 import {Select, SelectItem} from "@nextui-org/react";
 import './page.css'
+import {pacifico} from "@/app/landing/page";
 
 export default function UserStats() {
     const [token, setToken] = useState("");
@@ -111,18 +112,27 @@ export default function UserStats() {
                 <h2>Error: {error}</h2>
             ) : (
                 <>
-                    <div className={'flex items-center justify-end p-10'}>
-                        <h2 className={'text-2xl font-bold mx-5'}>Welcome {user.display_name}!</h2>
+                    <div className={'justify-between items-center flex'}>
+                        <div className={' text-start m-4'}>
+                            <h1 className={`text-6xl font-bold greenword ${pacifico.className}`}>Your top artists from 1
+                                year ago</h1>`
+                        </div>
+                        <div className={'flex items-center justify-end p-10'}>
+                            <h2 className={'text-2xl font-bold mx-5'}>Welcome {user.display_name}!</h2>
 
-                        {user.images && user.images.length > 0 ? (
-                            <img width={'50px'} height={'50px'} src={user.images[0].url} alt={'avatar'}
-                                 className={'rounded-3xl'}/>
-                        ) : (<h1>No image</h1>)}</div>
+                            {user.images && user.images.length > 0 ? (
+                                <>
+                                    <img width={'50px'} height={'50px'} src={user.images[0].url} alt={'avatar'}
+                                         className={'rounded-3xl'}/>
+                                    <button onClick={logout}>Refresh Token</button>
+                                </>
+                            ) : (<h1>No image</h1>)}</div>
+                    </div>
 
 
                     <div className={'flex justify-between items-center mx-10 mb-10'}>
                         <Select
-                            placeholder="Artist or Track"
+                            label="Artist or Track"
                             className="max-w-xs"
                         >
                             {types.map((type) => (
@@ -133,7 +143,7 @@ export default function UserStats() {
                         </Select>
 
                         <Select
-                            placeholder="Time"
+                            label="Time"
                             className="max-w-xs"
                         >
                             {timeRange.map((time) => (
@@ -144,7 +154,7 @@ export default function UserStats() {
                         </Select>
 
                         <Select
-                            placeholder="Amount"
+                            label="Amount"
                             className="max-w-xs"
                         >
                             {limits.map((limit) => (
@@ -155,24 +165,25 @@ export default function UserStats() {
                         </Select>
                     </div>
 
-                    <div className={'justify-center w-[50%] glass-div p-10 overflow-auto absolute h-[70vh]'}>
-                        {topArtists.map((artist, index) => (
-                            <div key={index}
-                                 className={'text-start w-full flex justify-between items-center relative mb-10 bg-zinc-100 p-4 rounded-2xl'}>
-                                <h1 className={'text-3xl font-bold'}>{artist.name}</h1>
-                                {artist.images && artist.images.length > 0 ? (
-                                    <img width={'100px'} height={'100px'} src={artist.images[0].url}
-                                         alt={'artist avatar'} className={'rounded-2xl'}/>
-                                ) : (
-                                    <h3>No image</h3>
-                                )}
-                            </div>
-                        ))}
+                    <div className={'flex justify-center'}>
+                        <div className={'justify-center w-[60%] glass-div p-10 overflow-auto absolute h-[70vh]'}>
+                            {topArtists.map((artist, index) => (
+                                <div key={index}
+                                     className={'text-start w-full flex justify-between items-center relative mb-10 bg-zinc-100 p-4 rounded-2xl'}>
+                                    <h1 className={'text-3xl font-bold'}>{artist.name}</h1>
+                                    {artist.images && artist.images.length > 0 ? (
+                                        <img width={'100px'} height={'100px'} src={artist.images[0].url}
+                                             alt={'artist avatar'} className={'rounded-2xl'}/>
+                                    ) : (
+                                        <h3>No image</h3>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
                     </div>
-
                 </>
             )}
-            <button onClick={logout}>Logout</button>
+
         </div>
     );
 }
