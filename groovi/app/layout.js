@@ -2,43 +2,54 @@ import "./globals.css";
 import {NextUIProvider} from "@nextui-org/react";
 import Image from "next/image";
 import bg from "@/public/bg.jpg";
-import groovy from '@/public/groovy.png'
+import groovy from '@/public/groovy.png';
 import {Pacifico} from "next/font/google";
 import Link from "next/link";
 import {Button} from "@nextui-org/button";
 import {FaSpotify} from "react-icons/fa";
 
-
 const pacifico = Pacifico({
     weight: '400',
     subsets: ['latin'],
 });
-export default function RootLayout({children}) {
 
+export default function RootLayout({children}) {
+    const CLIENT_ID = "9e21c2f01ec54a98aeed0aa8bc9c2c11";
+    const REDIRECT_URI = "http://localhost:3000/userstatistics";
+    const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
+    const RESPONSE_TYPE = "token";
+    const SCOPES = [
+        "user-read-private",
+        "user-top-read"
+    ].join("%20");
 
     return (
         <html lang="en">
         <body>
         <NextUIProvider>
-            <header className={'fixed top-0 left-0 w-full'}>
-                <div className={'w-[98vw] justify-between flex bg-transparent border-b items-center '}>
-                    <div className={'flex justify-start items-center text-end h-[8vh] m-0 bg-transparent z-10 '}>
-                        <Image src={groovy} width={70} height={5} alt={'groovy'} className={'ml-5'}/>
-                        <h3 className={`${pacifico.className} text-xl`}>groovy</h3>
-                    </div>
-                    <Button className={'bg-[#1E452E] text-[#1ED760] m-2'} size={'md'}
-                            startContent={<FaSpotify/>}>Connect</Button>
+            <header className={'fixed top-0 left-0 w-full z-20'}>
+                <div className={'w-full mx-10 justify-between flex bg-transparent border-b items-center'}>
+                    <Link href={'/'}>
+                        <div className={'flex justify-start items-center text-end h-[8vh]  bg-transparent'}>
+                            <Image src={groovy} width={70} height={5} alt={'groovy'}/>
+                            <h3 className={`${pacifico.className} text-xl`}>groovy</h3>
+                        </div>
+                    </Link>
+                    <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPES}`}>
+                        <Button className={'bg-[#1E452E] text-[#1ED760] mr-20'} size={'md'}
+                                startContent={<FaSpotify/>}>Connect</Button>
+                    </a>
                 </div>
             </header>
-            <div className="relative min-h-screen items-center justify-center">
+            <div className="relative min-h-screen min-w-screen flex items-center justify-center overflow-hidden">
                 <Image
                     src={bg}
                     alt="Background"
-                    className="absolute inset-0 -z-20 bg-cover object-cover opacity-10"
+                    className="absolute z-0 bg-cover object-cover w-full h-full opacity-10"
                     fill={true}
                     priority
                 />
-                <div className={'relative z-10'}>
+                <div className={'z-10 w-full h-full flex justify-center items-center'}>
                     {children}
                 </div>
             </div>

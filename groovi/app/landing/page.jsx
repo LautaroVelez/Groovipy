@@ -22,21 +22,21 @@ export default function Landing() {
     ].join("%20");
 
     return (
-        <div className="relative min-h-screen flex ">
-            <div className=" text-3xl md:text-6xl font-bold z-10 flex items-center justify-between">
-                <div className="w-[30vw] mx-48 text-center">
-                    <div className={'flex'}>
-                    <h1 className="">Your</h1>
-                    <h1 className="mx-6 greenword">spotify</h1></div>
-                    <h1 className="">statistics with</h1>
-                    <h1 className={`${pacifico.className} greenword md:text-6xl text-3xl$ text-center`}>groovy</h1>
+        <div className="relative min-h-screen md:flex w-full ">
+            <div className=" justify-center text-center text-4xl md:text-6xl font-bold z-10 md:flex flex-row  items-center md:justify-between ">
 
-                <a className={'text-xl greenword'}
+                <div className="md:w-[30vw] w-full pt-32 md:p-0 md:mx-48 text-center">
+                    <h1 className="">Your spotify</h1>
+                    <h1 className="">statistics with</h1>
+                    <h1 className={`${pacifico.className} greenword md:text-6xl text-4xl text-center`}>groovy</h1>
+
+                <a className={'text-xl greenword aLink'}
                    href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPES}`}>Connect
                     with Spotify </a>
+
                 </div>
 
-                <div className="justify-end flex">
+                <div className="md:justify-end md:flex justify-center w-full md:w-[30vw]">
                     <Image
                         src={gif}
                         alt="Groovy GIF"
