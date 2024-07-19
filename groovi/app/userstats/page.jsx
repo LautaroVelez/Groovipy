@@ -15,6 +15,10 @@ import wos from '@/public/wos.png'
 import mac from '@/public/mac.png'
 import travis from '@/public/travis.png'
 import abel from '@/public/abel.png'
+import {motion} from "framer-motion"
+import Link from "next/link";
+import {IoIosArrowForward} from "react-icons/io";
+
 
 export default function UserStats() {
     const [token, setToken] = useState("");
@@ -144,8 +148,8 @@ export default function UserStats() {
                 </div>
             ) : (
                 <div className={'text-center font-bold w-full'}>
-                    <div className={'pb-20 text-center w-full'}>
-                        <div className={'flex text-6xl text-center items-center justify-center'}>
+                    <div className={'pb-20 md:pt-0 pt-40 text-center w-full'}>
+                        <div className={'flex md:text-6xl text-3xl text-center items-center justify-center'}>
                             <h1>Your music, </h1>
                             <h1 className={`greenword mx-4`}> your stats,</h1>
                             <h1> your story</h1>
@@ -153,72 +157,90 @@ export default function UserStats() {
                         <h1 className={'text-2xl pt-4 text-[#7E7E7] font-bold'}>¿How are we feeling like today?</h1>
                     </div>
 
-                    <div className={'flex '}>
-                        <Card isFooterBlurred isPressable
-                              className="border-none bg-background/60 dark:bg-default-100/50 max-w-[20vw] mx-10">
-                        <CardHeader className="absolute z-10 top-1 flex-col items-start">
-                                <p className="text-tiny uppercase font-bold">view</p>
-                                <h4 className="text-black font-bold text-3xl underline ">Top Artists</h4>
-                            </CardHeader>
-                            <Image
-                                removeWrapper
-                                alt="Card example background"
-                                className="z-0 w-full h-full scale-100  object-cover opacity-80"
-                                src={sade}
-                            />
-                            <CardFooter
-                                className="absolute bg-white/30 bottom-0 z-10 justify-between">
+                    <div className={'md:flex block justify-center w-full'}>
+                        <Link href={'userstats/artists'}>
+                            <motion.div whileHover={{
+                                scale: 1.02,
+                                transition: {duration: 0.3},
+                            }} className={'flex justify-center'}>
+                                <Card isFooterBlurred isPressable
+                                      className="border-none bg-background/60 dark:bg-default-100/50 md:max-w-[20vw] max-w-xs md:mx-10">
+                                    <CardHeader className="absolute z-10 top-1 flex-col items-start">
 
-                                <Button className="text-tiny" color="success" radius={'md'} size="md">
-                                    <b>Get my top artists </b>
+                                    </CardHeader>
+                                    <Image
+                                        removeWrapper
+                                        alt="Card example background"
+                                        className="z-0 w-full h-full scale-100  object-cover opacity-80"
+                                        src={sade}
+                                    />
+                                    <CardFooter
+                                        className="absolute bg-white/30 bottom-0 z-10 justify-start flex-col items-start">
+                                        <p className="text-tiny uppercase font-bold">view</p>
+                                        <div className={'flex justify-center items-center'}>
+                                            <h4 className="text-black  text-2xl">Top Artists </h4>
+                                            <IoIosArrowForward className={'w-5 h-5 mt-2'}/>
+                                        </div>
+                                    </CardFooter>
+                                </Card>
+                            </motion.div>
+                        </Link>
 
-                                </Button>
-                            </CardFooter>
-                        </Card>
+                        <Link href={'userstats/tracks'}>
+                            <motion.div whileHover={{
+                                scale: 1.02,
+                                transition: {duration: 0.3},
+                            }} className={'flex justify-center'}>
+                                <Card isFooterBlurred isPressable
+                                      className="border-none bg-background/60 dark:bg-default-100/50 md:max-w-[20vw] max-w-xs md:mx-10 md:mt-0 mt-10">
+                                    <CardHeader className="absolute z-10 top-1 flex-col items-start">
 
-                        <Card isFooterBlurred isPressable
-                              className="border-none bg-background/60 dark:bg-default-100/50 max-w-[20vw] mx-10">
-                            <CardHeader className="absolute z-10 top-1 flex-col items-start">
-                                <p className="text-tiny text-white uppercase font-bold">view</p>
-                                <h4 className="text-white font-bolder text-3xl underline ">Top Tracks</h4>
-                            </CardHeader>
-                            <Image
-                                removeWrapper
-                                alt="Card example background"
-                                className="z-0 w-full h-full scale-100  object-cover  opacity-80"
-                                src={travis}
-                            />
-                            <CardFooter
-                                className="absolute bg-white/30 bottom-0 z-10 justify-between">
+                                    </CardHeader>
+                                    <Image
+                                        removeWrapper
+                                        alt="Card example background"
+                                        className="z-0 w-full h-full scale-100  object-cover opacity-80"
+                                        src={travis}
+                                    />
+                                    <CardFooter
+                                        className="absolute bg-white/30 bottom-0 z-10 justify-start flex-col items-start">
+                                        <p className="text-tiny uppercase text-white font-bold">view</p>
+                                        <div className={'flex justify-center items-center'}>
+                                            <h4 className="text-white  text-2xl">Top Tracks </h4>
+                                            <IoIosArrowForward className={'w-5 h-5 mt-2 text-white'}/>
+                                        </div>
+                                    </CardFooter>
+                                </Card>
+                            </motion.div>
+                        </Link>
 
-                                <Button className="text-tiny" color="success" radius={'md'} size="md">
-                                    <b>Get my top tracks </b>
+                        <Link href={'userstats/genres'}>
+                            <motion.div whileHover={{
+                                scale: 1.02,
+                                transition: {duration: 0.3},
+                            }} className={'flex justify-center'}>
+                                <Card isFooterBlurred isPressable
+                                      className="border-none bg-background/60 dark:bg-default-100/50 md:max-w-[20vw] max-w-xs md:mx-10 md:mt-0 mt-10">
+                                    <CardHeader className="absolute z-10 top-1 flex-col items-start">
 
-                                </Button>
-                            </CardFooter>
-                        </Card>
-
-                        <Card isFooterBlurred isPressable
-                              className="border-none bg-background/60 dark:bg-default-100/50 max-w-[20vw] mx-10">
-                            <CardHeader className="absolute z-10 top-1 flex-col items-start">
-                                <p className="text-tiny  uppercase font-bold">view</p>
-                                <h4 className="text-white font-bolder text-3xl underline ">Top Genres</h4>
-                            </CardHeader>
-                            <Image
-                                removeWrapper
-                                alt="Card example background"
-                                className="z-0 w-full h-full scale-100  object-cover  opacity-80"
-                                src={abel}
-                            />
-                            <CardFooter
-                                className="absolute bg-white/30 bottom-0 z-10 justify-between">
-
-                                <Button className="text-tiny" color="success" radius={'md'} size="md">
-                                    <b>Get my top genres </b>
-
-                                </Button>
-                            </CardFooter>
-                        </Card>
+                                    </CardHeader>
+                                    <Image
+                                        removeWrapper
+                                        alt="Card example background"
+                                        className="z-0 w-full h-full scale-100  object-cover opacity-80"
+                                        src={abel}
+                                    />
+                                    <CardFooter
+                                        className="absolute bg-white/30 bottom-0 z-10 justify-start flex-col items-start">
+                                        <p className="text-tiny uppercase font-bold">view</p>
+                                        <div className={'flex justify-center items-center'}>
+                                            <h4 className="text-black  text-2xl">Top Genres </h4>
+                                            <IoIosArrowForward className={'w-5 h-5 mt-2'}/>
+                                        </div>
+                                    </CardFooter>
+                                </Card>
+                            </motion.div>
+                        </Link>
 
                     </div>
                 </div>
@@ -228,9 +250,9 @@ export default function UserStats() {
     );
 }
 /*
-<div className={'justify-end items-center flex'}>
-    <div className={'flex items-center justify-end p-10'}>
-        <h2 className={'text-2xl font-bold mx-5'}>Welcome {user.display_name}!</h2>
+    <div className={'justify-end items-center flex'}>
+        <div className={'flex items-center justify-end p-10'}>
+            <h2 className={'text-2xl font-bold mx-5'}>Welcome {user.display_name}!</h2>
 
         {user.images && user.images.length > 0 ? (
             <>
