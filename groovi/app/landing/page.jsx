@@ -22,10 +22,12 @@ export default function Landing() {
     ].join("%20");
 
     return (
-        <div className="relative min-h-screen flex items-center">
+        <div className="relative min-h-screen flex ">
             <div className=" text-3xl md:text-6xl font-bold z-10 flex items-center justify-between">
-                <div className="w-[30vw] m-48 text-center">
-                    <h1 className="">Your spotify</h1>
+                <div className="w-[30vw] mx-48 text-center">
+                    <div className={'flex'}>
+                    <h1 className="">Your</h1>
+                    <h1 className="mx-6 greenword">spotify</h1></div>
                     <h1 className="">statistics with</h1>
                     <h1 className={`${pacifico.className} greenword md:text-6xl text-3xl$ text-center`}>groovy</h1>
 
