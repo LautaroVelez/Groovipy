@@ -4,6 +4,7 @@ import Image from 'next/image';
 import gif from '../../public/gif.gif';
 import {Pacifico} from 'next/font/google';
 import Link from 'next/link'
+import '../globals.css'
 
 export const pacifico = Pacifico({
     weight: '400',
@@ -21,28 +22,29 @@ export default function Landing() {
     ].join("%20");
 
     return (
-        <div className="relative min-h-screen flex flex-col items-center justify-center">
-            <div className="text-center text-3xl md:text-5xl font-bold z-10 p-4">
-                <div className="flex flex-wrap justify-center items-center">
-                    <h1 className="mr-2">¡Get your</h1>
-                    <h1 className="greenword mx-3">spotify</h1>
-                    <h1 className="ml-2">statistics</h1>
+        <div className="relative min-h-screen flex items-center">
+            <div className=" text-3xl md:text-6xl font-bold z-10 flex items-center justify-between">
+                <div className="w-[30vw] m-48 text-center">
+                    <h1 className="">Your spotify</h1>
+                    <h1 className="">statistics with</h1>
+                    <h1 className={`${pacifico.className} greenword md:text-6xl text-3xl$ text-center`}>groovy</h1>
+
+                <a className={'text-xl greenword'}
+                   href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPES}`}>Connect
+                    with Spotify </a>
                 </div>
-                <div className="flex flex-wrap justify-center items-center mt-4">
-                    <h1 className="mr-2">with</h1>
-                    <h1 className={`greenword mx-4 md:text-6xl text-3xl mb-3 ${pacifico.className}`}>groovy!</h1>
-                </div>
-                <div className="justify-center flex">
+
+                <div className="justify-end flex">
                     <Image
                         src={gif}
                         alt="Groovy GIF"
-                        width={300}
-                        height={300}
+                        width={400}
+                        height={400}
                         priority // Ensure the GIF is prioritized for loading
                         unoptimized
                     />
                 </div>
-                <Link href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPES}`}><Button size={"lg"} color={"success"}>Go fot it</Button></Link>
+
             </div>
         </div>
     );

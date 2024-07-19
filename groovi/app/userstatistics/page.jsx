@@ -2,7 +2,7 @@
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 import {Button} from "@nextui-org/button";
-import {Spinner} from "@nextui-org/react";
+import {Checkbox, Spinner} from "@nextui-org/react";
 import {Select, SelectItem} from "@nextui-org/react";
 import './page.css'
 import {pacifico} from "@/app/landing/page";
@@ -106,17 +106,36 @@ export default function UserStats() {
         }
     }, []);
 
+    const HandleSelects = async (e) => {
+
+        try {
+            const {data} = await axios.get(`https://api.spotify.com/v1/me/top/${types.value}?time_range=${timeRange.value}&limit=${limits.value}&offset=0`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            setTopArtists(data.items);
+        } catch (error) {
+            if (error.response?.data?.error?.message === "The access token expired") {
+                logout();
+                window.location.href = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`;
+            } else {
+                setError(error.response?.data?.error?.message || error.message);
+            }
+        }
+    };
+
+
     return (
         <div className="text-center justify-center">
             {error ? (
-                <h2>Error: {error}</h2>
+                <div>
+                    <h2>Error: {error}</h2>
+                    <button onClick={logout}>Refresh Token</button>
+                </div>
             ) : (
                 <>
-                    <div className={'justify-between items-center flex'}>
-                        <div className={' text-start m-4'}>
-                            <h1 className={`text-6xl font-bold greenword ${pacifico.className}`}>Your top artists from 1
-                                year ago</h1>`
-                        </div>
+                    <div className={'justify-end items-center flex'}>
                         <div className={'flex items-center justify-end p-10'}>
                             <h2 className={'text-2xl font-bold mx-5'}>Welcome {user.display_name}!</h2>
 
@@ -124,49 +143,57 @@ export default function UserStats() {
                                 <>
                                     <img width={'50px'} height={'50px'} src={user.images[0].url} alt={'avatar'}
                                          className={'rounded-3xl'}/>
-                                    <button onClick={logout}>Refresh Token</button>
+
                                 </>
                             ) : (<h1>No image</h1>)}</div>
                     </div>
 
 
-                    <div className={'flex justify-between items-center mx-10 mb-10'}>
-                        <Select
-                            label="Artist or Track"
-                            className="max-w-xs"
-                        >
-                            {types.map((type) => (
-                                <SelectItem key={type.key} value={type.key}>
-                                    {type.label}
-                                </SelectItem>
-                            ))}
-                        </Select>
+                    <form onSubmit={HandleSelects}>
+                        <div className={'flex justify-between items-center mx-5 mb-10'}>
+                            <Select
+                                label="Artist or Track"
+                                className="max-w-xs"
+                            >
+                                {types.map((type) => (
+                                    <SelectItem key={type.key} value={type.key} onChange={HandleSelects}>
+                                        {type.label}
+                                    </SelectItem>
+                                ))}
+                            </Select>
 
-                        <Select
-                            label="Time"
-                            className="max-w-xs"
-                        >
-                            {timeRange.map((time) => (
-                                <SelectItem key={time.key} value={time.key}>
-                                    {time.label}
-                                </SelectItem>
-                            ))}
-                        </Select>
+                            <Select
+                                label="Time"
+                                className="max-w-xs"
+                            >
+                                {timeRange.map((time) => (
+                                    <SelectItem key={time.key} value={time.key} onChange={HandleSelects}>
+                                        {time.label}
+                                    </SelectItem>
+                                ))}
+                            </Select>
 
-                        <Select
-                            label="Amount"
-                            className="max-w-xs"
-                        >
-                            {limits.map((limit) => (
-                                <SelectItem key={limit.key} value={limit.key}>
-                                    {limit.label}
-                                </SelectItem>
-                            ))}
-                        </Select>
-                    </div>
+                            <Select
+                                label="Amount"
+                                className="max-w-xs"
+                            >
+                                {limits.map((limit) => (
+                                    <SelectItem key={limit.key} value={limit.key} onChange={HandleSelects}>
+                                        {limit.label}
+                                    </SelectItem>
+                                ))}
+                            </Select>
+
+                            <Button size={'md'} type={'submit'} color={"success"} className={'w-60'}>Generate</Button>
+                        </div>
+                    </form>
 
                     <div className={'flex justify-center'}>
                         <div className={'justify-center w-[60%] glass-div p-10 overflow-auto absolute h-[70vh]'}>
+                            <div className={'justify-between flex'}>
+                                <Checkbox defaultSelected size={'lg'} color={"success"}>Names</Checkbox>
+                                <Checkbox defaultSelected size={'lg'} color={"success"}>Images</Checkbox>
+                            </div>
                             {topArtists.map((artist, index) => (
                                 <div key={index}
                                      className={'text-start w-full flex justify-between items-center relative mb-10 bg-zinc-100 p-4 rounded-2xl'}>
