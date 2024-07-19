@@ -2,10 +2,19 @@
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 import {Button} from "@nextui-org/button";
-import {Checkbox, Spinner} from "@nextui-org/react";
+import {Card, CardFooter, CardHeader, Checkbox, Spinner} from "@nextui-org/react";
 import {Select, SelectItem} from "@nextui-org/react";
 import './page.css'
 import {pacifico} from "@/app/landing/page";
+import Image from 'next/image';
+import ansiedak from '@/public/ansiedak.png'
+import sade from '@/public/sade.png'
+import kendrick from '@/public/kendrick.png'
+import ronpe from '@/public/ronpe.png'
+import wos from '@/public/wos.png'
+import mac from '@/public/mac.png'
+import travis from '@/public/travis.png'
+import abel from '@/public/abel.png'
 
 export default function UserStats() {
     const [token, setToken] = useState("");
@@ -134,83 +143,163 @@ export default function UserStats() {
                     <button onClick={logout}>Refresh Token</button>
                 </div>
             ) : (
-                <>
-                    <div className={'justify-end items-center flex'}>
-                        <div className={'flex items-center justify-end p-10'}>
-                            <h2 className={'text-2xl font-bold mx-5'}>Welcome {user.display_name}!</h2>
-
-                            {user.images && user.images.length > 0 ? (
-                                <>
-                                    <img width={'50px'} height={'50px'} src={user.images[0].url} alt={'avatar'}
-                                         className={'rounded-3xl'}/>
-
-                                </>
-                            ) : (<h1>No image</h1>)}</div>
+                <div className={'text-center font-bold w-full'}>
+                    <div className={'pb-20 text-center w-full'}>
+                        <div className={'flex text-6xl text-center items-center justify-center'}>
+                            <h1>Your music, </h1>
+                            <h1 className={`greenword mx-4`}> your stats,</h1>
+                            <h1> your story</h1>
+                        </div>
+                        <h1 className={'text-2xl pt-4 text-[#7E7E7] font-bold'}>¿How are we feeling like today?</h1>
                     </div>
 
+                    <div className={'flex '}>
+                        <Card isFooterBlurred isPressable
+                              className="border-none bg-background/60 dark:bg-default-100/50 max-w-[20vw] mx-10">
+                        <CardHeader className="absolute z-10 top-1 flex-col items-start">
+                                <p className="text-tiny uppercase font-bold">view</p>
+                                <h4 className="text-black font-bold text-3xl underline ">Top Artists</h4>
+                            </CardHeader>
+                            <Image
+                                removeWrapper
+                                alt="Card example background"
+                                className="z-0 w-full h-full scale-100  object-cover opacity-80"
+                                src={sade}
+                            />
+                            <CardFooter
+                                className="absolute bg-white/30 bottom-0 z-10 justify-between">
 
-                    <form onSubmit={HandleSelects}>
-                        <div className={'flex justify-between items-center mx-5 mb-10'}>
-                            <Select
-                                label="Artist or Track"
-                                className="max-w-xs"
-                            >
-                                {types.map((type) => (
-                                    <SelectItem key={type.key} value={type.key} onChange={HandleSelects}>
-                                        {type.label}
-                                    </SelectItem>
-                                ))}
-                            </Select>
+                                <Button className="text-tiny" color="success" radius={'md'} size="md">
+                                    <b>Get my top artists </b>
 
-                            <Select
-                                label="Time"
-                                className="max-w-xs"
-                            >
-                                {timeRange.map((time) => (
-                                    <SelectItem key={time.key} value={time.key} onChange={HandleSelects}>
-                                        {time.label}
-                                    </SelectItem>
-                                ))}
-                            </Select>
+                                </Button>
+                            </CardFooter>
+                        </Card>
 
-                            <Select
-                                label="Amount"
-                                className="max-w-xs"
-                            >
-                                {limits.map((limit) => (
-                                    <SelectItem key={limit.key} value={limit.key} onChange={HandleSelects}>
-                                        {limit.label}
-                                    </SelectItem>
-                                ))}
-                            </Select>
+                        <Card isFooterBlurred isPressable
+                              className="border-none bg-background/60 dark:bg-default-100/50 max-w-[20vw] mx-10">
+                            <CardHeader className="absolute z-10 top-1 flex-col items-start">
+                                <p className="text-tiny text-white uppercase font-bold">view</p>
+                                <h4 className="text-white font-bolder text-3xl underline ">Top Tracks</h4>
+                            </CardHeader>
+                            <Image
+                                removeWrapper
+                                alt="Card example background"
+                                className="z-0 w-full h-full scale-100  object-cover  opacity-80"
+                                src={travis}
+                            />
+                            <CardFooter
+                                className="absolute bg-white/30 bottom-0 z-10 justify-between">
 
-                            <Button size={'md'} type={'submit'} color={"success"} className={'w-60'}>Generate</Button>
-                        </div>
-                    </form>
+                                <Button className="text-tiny" color="success" radius={'md'} size="md">
+                                    <b>Get my top tracks </b>
 
-                    <div className={'flex justify-center'}>
-                        <div className={'justify-center w-[60%] glass-div p-10 overflow-auto absolute h-[70vh]'}>
-                            <div className={'justify-between flex'}>
-                                <Checkbox defaultSelected size={'lg'} color={"success"}>Names</Checkbox>
-                                <Checkbox defaultSelected size={'lg'} color={"success"}>Images</Checkbox>
-                            </div>
-                            {topArtists.map((artist, index) => (
-                                <div key={index}
-                                     className={'text-start w-full flex justify-between items-center relative mb-10 bg-zinc-100 p-4 rounded-2xl'}>
-                                    <h1 className={'text-3xl font-bold'}>{artist.name}</h1>
-                                    {artist.images && artist.images.length > 0 ? (
-                                        <img width={'100px'} height={'100px'} src={artist.images[0].url}
-                                             alt={'artist avatar'} className={'rounded-2xl'}/>
-                                    ) : (
-                                        <h3>No image</h3>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
+                                </Button>
+                            </CardFooter>
+                        </Card>
+
+                        <Card isFooterBlurred isPressable
+                              className="border-none bg-background/60 dark:bg-default-100/50 max-w-[20vw] mx-10">
+                            <CardHeader className="absolute z-10 top-1 flex-col items-start">
+                                <p className="text-tiny  uppercase font-bold">view</p>
+                                <h4 className="text-white font-bolder text-3xl underline ">Top Genres</h4>
+                            </CardHeader>
+                            <Image
+                                removeWrapper
+                                alt="Card example background"
+                                className="z-0 w-full h-full scale-100  object-cover  opacity-80"
+                                src={abel}
+                            />
+                            <CardFooter
+                                className="absolute bg-white/30 bottom-0 z-10 justify-between">
+
+                                <Button className="text-tiny" color="success" radius={'md'} size="md">
+                                    <b>Get my top genres </b>
+
+                                </Button>
+                            </CardFooter>
+                        </Card>
+
                     </div>
-                </>
+                </div>
             )}
 
         </div>
     );
 }
+/*
+<div className={'justify-end items-center flex'}>
+    <div className={'flex items-center justify-end p-10'}>
+        <h2 className={'text-2xl font-bold mx-5'}>Welcome {user.display_name}!</h2>
+
+        {user.images && user.images.length > 0 ? (
+            <>
+                <img width={'50px'} height={'50px'} src={user.images[0].url} alt={'avatar'}
+                     className={'rounded-3xl'}/>
+
+            </>
+        ) : (<h1>No image</h1>)}</div>
+</div>
+
+
+<form onSubmit={HandleSelects}>
+    <div className={'flex justify-between items-center mx-5 mb-10'}>
+        <Select
+            label="Artist or Track"
+            className="max-w-xs"
+        >
+            {types.map((type) => (
+                <SelectItem key={type.key} value={type.key} onChange={HandleSelects}>
+                    {type.label}
+                </SelectItem>
+            ))}
+        </Select>
+
+        <Select
+            label="Time"
+            className="max-w-xs"
+        >
+            {timeRange.map((time) => (
+                <SelectItem key={time.key} value={time.key} onChange={HandleSelects}>
+                    {time.label}
+                </SelectItem>
+            ))}
+        </Select>
+
+        <Select
+            label="Amount"
+            className="max-w-xs"
+        >
+            {limits.map((limit) => (
+                <SelectItem key={limit.key} value={limit.key} onChange={HandleSelects}>
+                    {limit.label}
+                </SelectItem>
+            ))}
+        </Select>
+
+        <Button size={'md'} type={'submit'} color={"success"} className={'w-60'}>Generate</Button>
+    </div>
+</form>
+
+<div className={'flex justify-center'}>
+    <div className={'justify-center w-[60%] glass-div p-10 overflow-auto absolute h-[70vh]'}>
+        <div className={'justify-between flex'}>
+            <Checkbox defaultSelected size={'lg'} color={"success"}>Names</Checkbox>
+            <Checkbox defaultSelected size={'lg'} color={"success"}>Images</Checkbox>
+        </div>
+        {topArtists.map((artist, index) => (
+            <div key={index}
+                 className={'text-start w-full flex justify-between items-center relative mb-10 bg-zinc-100 p-4 rounded-2xl'}>
+                <h1 className={'text-3xl font-bold'}>{artist.name}</h1>
+                {artist.images && artist.images.length > 0 ? (
+                    <img width={'100px'} height={'100px'} src={artist.images[0].url}
+                         alt={'artist avatar'} className={'rounded-2xl'}/>
+                ) : (
+                    <h3>No image</h3>
+                )}
+            </div>
+        ))}
+    </div>
+</div>
+
+ */
