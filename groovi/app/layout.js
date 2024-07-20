@@ -31,7 +31,7 @@ export default function RootLayout({children}) {
                 <div className={'w-full mx-10 justify-between flex bg-transparent border-b items-center'}>
                     <Link href={'/'}>
                         <div className={'flex justify-start items-center text-end h-[8vh]  bg-transparent'}>
-                            <Image src={groovy} width={70} height={5} alt={'groovy'}/>
+                            <Image src={groovy} width={70} height={'auto'} alt={'groovy'} priority/>
                             <h3 className={`${pacifico.className} text-xl`}>groovy</h3>
                         </div>
                     </Link>

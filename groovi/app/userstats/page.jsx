@@ -3,16 +3,9 @@ import axios from 'axios';
 import {useEffect, useState} from 'react';
 import {Button} from "@nextui-org/button";
 import {Card, CardFooter, CardHeader, Checkbox, Spinner} from "@nextui-org/react";
-import {Select, SelectItem} from "@nextui-org/react";
 import './page.css'
-import {pacifico} from "@/app/landing/page";
 import Image from 'next/image';
-import ansiedak from '@/public/ansiedak.png'
 import sade from '@/public/sade.png'
-import kendrick from '@/public/kendrick.png'
-import ronpe from '@/public/ronpe.png'
-import wos from '@/public/wos.png'
-import mac from '@/public/mac.png'
 import travis from '@/public/travis.png'
 import abel from '@/public/abel.png'
 import {motion} from "framer-motion"
@@ -26,34 +19,6 @@ export default function UserStats() {
     const [error, setError] = useState(null);
     const [topArtists, setTopArtists] = useState([]);
 
-    const types = [{
-        key: "artist", label: "Artist"
-    }, {
-        key: 'tracks', label: 'Tracks'
-    }]
-
-    const timeRange = [{
-        key: "short_term", label: '1 Month ago'
-    }, {
-        key: "medium_term", label: '6 Months ago'
-    }, {
-        key: "long_term", label: 'A year ago '
-    },
-    ]
-
-    const limits = [{
-        key: '5', label: '5'
-    },
-        {key: '10', label: '10'},
-        {key: '20', label: '20'},
-        {key: '50', label: '50'}
-
-    ]
-
-    const CLIENT_ID = "9e21c2f01ec54a98aeed0aa8bc9c2c11";
-    const REDIRECT_URI = "http://localhost:3000/userstatistics";
-    const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-    const RESPONSE_TYPE = "token";
 
     const logout = () => {
         setToken("");
@@ -86,25 +51,7 @@ export default function UserStats() {
             } catch (error) {
                 if (error.response?.data?.error?.message === "The access token expired") {
                     logout();
-                    window.location.href = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`;
-                } else {
-                    setError(error.response?.data?.error?.message || error.message);
-                }
-            }
-        };
-
-        const getUserTop = async () => {
-            try {
-                const {data} = await axios.get("https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=50&offset=0", {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-                setTopArtists(data.items);
-            } catch (error) {
-                if (error.response?.data?.error?.message === "The access token expired") {
-                    logout();
-                    window.location.href = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`;
+                    window.location.href = '/';
                 } else {
                     setError(error.response?.data?.error?.message || error.message);
                 }
@@ -113,30 +60,10 @@ export default function UserStats() {
 
         if (token) {
             getUser();
-            getUserTop();
         } else {
             setError("No token found. Please login again.");
         }
     }, []);
-
-    const HandleSelects = async (e) => {
-
-        try {
-            const {data} = await axios.get(`https://api.spotify.com/v1/me/top/${types.value}?time_range=${timeRange.value}&limit=${limits.value}&offset=0`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            setTopArtists(data.items);
-        } catch (error) {
-            if (error.response?.data?.error?.message === "The access token expired") {
-                logout();
-                window.location.href = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`;
-            } else {
-                setError(error.response?.data?.error?.message || error.message);
-            }
-        }
-    };
 
 
     return (
@@ -160,7 +87,7 @@ export default function UserStats() {
                     <div className={'md:flex block justify-center w-full'}>
                         <Link href={'userstats/artists'}>
                             <motion.div whileHover={{
-                                scale: 1.02,
+                                scale: 1.08,
                                 transition: {duration: 0.3},
                             }} className={'flex justify-center'}>
                                 <Card isFooterBlurred isPressable
@@ -175,7 +102,7 @@ export default function UserStats() {
                                         src={sade}
                                     />
                                     <CardFooter
-                                        className="absolute bg-white/30 bottom-0 z-10 justify-start flex-col items-start">
+                                        className="absolute bg-white/30 bottom-0 z-20 justify-start flex-col items-start">
                                         <p className="text-tiny uppercase font-bold">view</p>
                                         <div className={'flex justify-center items-center'}>
                                             <h4 className="text-black  text-2xl">Top Artists </h4>
@@ -188,7 +115,7 @@ export default function UserStats() {
 
                         <Link href={'userstats/tracks'}>
                             <motion.div whileHover={{
-                                scale: 1.02,
+                                scale: 1.08,
                                 transition: {duration: 0.3},
                             }} className={'flex justify-center'}>
                                 <Card isFooterBlurred isPressable
@@ -203,7 +130,7 @@ export default function UserStats() {
                                         src={travis}
                                     />
                                     <CardFooter
-                                        className="absolute bg-white/30 bottom-0 z-10 justify-start flex-col items-start">
+                                        className="absolute bg-white/30 bottom-0 z-30 justify-start flex-col items-start">
                                         <p className="text-tiny uppercase text-white font-bold">view</p>
                                         <div className={'flex justify-center items-center'}>
                                             <h4 className="text-white  text-2xl">Top Tracks </h4>
@@ -216,7 +143,7 @@ export default function UserStats() {
 
                         <Link href={'userstats/genres'}>
                             <motion.div whileHover={{
-                                scale: 1.02,
+                                scale: 1.08,
                                 transition: {duration: 0.3},
                             }} className={'flex justify-center'}>
                                 <Card isFooterBlurred isPressable
@@ -231,7 +158,7 @@ export default function UserStats() {
                                         src={abel}
                                     />
                                     <CardFooter
-                                        className="absolute bg-white/30 bottom-0 z-10 justify-start flex-col items-start">
+                                        className="absolute bg-white/30 bottom-0 z-30 justify-start flex-col items-start">
                                         <p className="text-tiny uppercase font-bold">view</p>
                                         <div className={'flex justify-center items-center'}>
                                             <h4 className="text-black  text-2xl">Top Genres </h4>
@@ -249,79 +176,3 @@ export default function UserStats() {
         </div>
     );
 }
-/*
-    <div className={'justify-end items-center flex'}>
-        <div className={'flex items-center justify-end p-10'}>
-            <h2 className={'text-2xl font-bold mx-5'}>Welcome {user.display_name}!</h2>
-
-        {user.images && user.images.length > 0 ? (
-            <>
-                <img width={'50px'} height={'50px'} src={user.images[0].url} alt={'avatar'}
-                     className={'rounded-3xl'}/>
-
-            </>
-        ) : (<h1>No image</h1>)}</div>
-</div>
-
-
-<form onSubmit={HandleSelects}>
-    <div className={'flex justify-between items-center mx-5 mb-10'}>
-        <Select
-            label="Artist or Track"
-            className="max-w-xs"
-        >
-            {types.map((type) => (
-                <SelectItem key={type.key} value={type.key} onChange={HandleSelects}>
-                    {type.label}
-                </SelectItem>
-            ))}
-        </Select>
-
-        <Select
-            label="Time"
-            className="max-w-xs"
-        >
-            {timeRange.map((time) => (
-                <SelectItem key={time.key} value={time.key} onChange={HandleSelects}>
-                    {time.label}
-                </SelectItem>
-            ))}
-        </Select>
-
-        <Select
-            label="Amount"
-            className="max-w-xs"
-        >
-            {limits.map((limit) => (
-                <SelectItem key={limit.key} value={limit.key} onChange={HandleSelects}>
-                    {limit.label}
-                </SelectItem>
-            ))}
-        </Select>
-
-        <Button size={'md'} type={'submit'} color={"success"} className={'w-60'}>Generate</Button>
-    </div>
-</form>
-
-<div className={'flex justify-center'}>
-    <div className={'justify-center w-[60%] glass-div p-10 overflow-auto absolute h-[70vh]'}>
-        <div className={'justify-between flex'}>
-            <Checkbox defaultSelected size={'lg'} color={"success"}>Names</Checkbox>
-            <Checkbox defaultSelected size={'lg'} color={"success"}>Images</Checkbox>
-        </div>
-        {topArtists.map((artist, index) => (
-            <div key={index}
-                 className={'text-start w-full flex justify-between items-center relative mb-10 bg-zinc-100 p-4 rounded-2xl'}>
-                <h1 className={'text-3xl font-bold'}>{artist.name}</h1>
-                {artist.images && artist.images.length > 0 ? (
-                    <img width={'100px'} height={'100px'} src={artist.images[0].url}
-                         alt={'artist avatar'} className={'rounded-2xl'}/>
-                ) : (
-                    <h3>No image</h3>
-                )}
-            </div>
-        ))}
-    </div>
-</div>
-
- */
