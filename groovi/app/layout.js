@@ -9,6 +9,8 @@ import {Pacifico} from "next/font/google";
 import {FaSpotify} from "react-icons/fa";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import { IoIosArrowDown } from "react-icons/io";
+
 
 const pacifico = Pacifico({
     weight: '400',
@@ -93,6 +95,7 @@ export default function RootLayout({children}) {
                                                 <img width="40" height="40" src={user.images[0].url} alt="avatar"
                                                      className={'rounded-3xl'}/>
                                             )}
+                                              <IoIosArrowDown className={'ml-2'}/>
                                         </div>
                                     </Button>
                                 </DropdownTrigger>

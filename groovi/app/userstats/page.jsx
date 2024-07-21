@@ -3,7 +3,6 @@
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 import {Button, Card, CardFooter, CardHeader, Spinner} from "@nextui-org/react";
-import './page.css'
 import Image from 'next/image';
 import sade from '@/public/sade.png';
 import travis from '@/public/travis.png';
@@ -74,10 +73,10 @@ export default function UserStats() {
                         </motion.div>
                     </Link>
 
-                    <Link href="userstats/genres">
+
                         <motion.div whileHover={{scale: 1.08, transition: {duration: 0.3}}}
                                     className="flex justify-center">
-                            <Card isFooterBlurred isPressable
+                            <Card isFooterBlurred isPressable isDisabled
                                   className="border-none bg-background/60 dark:bg-default-100/50 md:max-w-[20vw] max-w-xs md:mx-10">
                                 <CardHeader className="absolute z-10 top-1 flex-col items-start"/>
                                 <Image
@@ -96,7 +95,7 @@ export default function UserStats() {
                                 </CardFooter>
                             </Card>
                         </motion.div>
-                    </Link>
+
                 </div>
             </div>
         </div>

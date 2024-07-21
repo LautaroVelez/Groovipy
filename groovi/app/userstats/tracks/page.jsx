@@ -7,6 +7,7 @@ import {MdOutlineCalendarMonth} from "react-icons/md";
 import {IoCalendarOutline} from "react-icons/io5";
 import '@/app/globals.css'
 import {motion} from "framer-motion"
+import {FaSpotify} from "react-icons/fa";
 
 export default function Tracks() {
     const [topTracks, setTopTracks] = useState([]);
@@ -77,8 +78,8 @@ export default function Tracks() {
                         <>
                             <motion.div whileHover={{scale: 1.02, transition: {duration: 0.2}}}>
                                 <div key={index}
-                                     className={'flex justify-between items-center relative z-20 px-5'}>
-                                    <div className={'flex w-[40%]'}>
+                                     className={'flex justify-between items-center relative z-20 p-5'}>
+                                    <div className={'flex w-[50%]'}>
                                         <div className={'flex items-center'}>
                                             <h1 className={'text-xl ml-2 items-center font-bold'}>{index + 1}</h1>
                                             <Divider orientation={'vertical'} className={'mx-3 '}/>
@@ -88,18 +89,23 @@ export default function Tracks() {
                                             <h1 className={' font-bold text-gray-500 text-tiny'}>{track.artists[0].name}</h1>
                                         </div>
                                     </div>
-                                    <div className={'w-60'}>
+                                    <div className={'w-[20%]'}>
                                         <h1 className={'text-xl  ml-2 font-thin'}>{track.album.name}</h1>
                                     </div>
+
+                                    <div className={'flex items-center text-center w-[5%]'}><a
+                                        href={track.external_urls.spotify}
+                                        className={'flex items-center text-center mx-1 text-[#2fd566]'}><FaSpotify
+                                        className={'w-[20px] h-auto'}/></a></div>
                                     {track.album.images && track.album.images.length > 0 ? (
                                         <img width="100px" height="auto" src={track.album.images[0].url}
-                                             alt="album cover" className={' z-30'}/>
+                                             alt="album cover" className={'rounded-3xl z-30'}/>
 
                                     ) : (
                                         <h3>No image</h3>
                                     )}
                                 </div>
-                                <Divider orientation={" horizontal"} className={' mb-1 mt-1'}/>
+                                <Divider orientation={" horizontal"}/>
                             </motion.div>
                         </>
                     ))}
