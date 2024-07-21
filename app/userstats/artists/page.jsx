@@ -40,7 +40,7 @@ export default function Artists() {
 
     return (
         <div>
-            <div className={'w-[80vw] justify-center items-center flex text-center'}>
+            <div className={'w-full justify-center items-center flex text-center'}>
                  <div className={'w-full flex justify-center'}>
                 <Tabs fullWidth size={'lg'} color={'success'} radius="full" variant={'solid'}
                       className={'text-black p-10 w-full'}
@@ -68,14 +68,13 @@ export default function Artists() {
 
 
             <div
-                className={'flex justify-center items-center isolate rounded-3xl bg-white/2 backdrop-blur-sm shadow-lg ring-1 ring-black/5'}>
+                className={'flex justify-center items-center isolate rounded-3xl bg-white/2 backdrop-blur-sm shadow-lg ring-1 ring-black/5 md:w-[80vw] w-full'}>
                 <div className={' justify-center items-center overflow-y-auto overflow-x-hidden h-[70vh] w-full z-20'}>
                     {topArtists.map((artist, index) => (
                         <>
 
-                            <motion.div whileHover={{scale: 1.02, transition: {duration: 0.2}}} key={index}>
-                                <div
-                                     className={'text-start flex justify-between items-center relative z-20 p-2'}>
+                            <motion.div whileHover={{scale: 1.02, transition: {duration: 0.2}}} key={artist.id}>
+                                <div className={'text-start flex justify-between items-center relative z-20 p-2'}>
                                     <div className={'flex w-[90%]'}>
                                         <div className={'flex items-center'}>
                                             <h1 className={'text-xl ml-2 items-center font-bold'}>{index + 1}</h1>

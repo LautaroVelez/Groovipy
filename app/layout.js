@@ -89,8 +89,8 @@ export default function RootLayout({children}) {
                                 <DropdownTrigger>
                                     <Button variant={'outlined'}>
                                         <div className="flex items-center text-center">
-                                            <h1 className={'pr-2 text-zinc-800 font-bold'}>
-                                                Welcome {user?.display_name}</h1>
+                                            <h1 className={'pr-2 text-zinc-800 font-bold md:block hidden'}>
+                                                Hello {user?.display_name}!</h1>
                                             {user?.images && user.images.length > 0 && (
                                                 <img width="40" height="40" src={user.images[0].url} alt="avatar"
                                                      className={'rounded-3xl'}/>
