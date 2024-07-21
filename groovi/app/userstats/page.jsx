@@ -29,7 +29,7 @@ export default function UserStats() {
                         <motion.div whileHover={{scale: 1.08, transition: {duration: 0.3}}}
                                     className="flex justify-center">
                             <Card isFooterBlurred isPressable
-                                  className="border-none bg-background/60 dark:bg-default-100/50 md:max-w-[20vw] max-w-xs md:mx-10">
+                                  className="border-none bg-background/60 dark:bg-default-100/50 md:max-w-[20vw] max-w-xs m-5 ">
                                 <CardHeader className="absolute z-10 top-1 flex-col items-start"/>
                                 <Image
                                     removeWrapper
@@ -42,7 +42,7 @@ export default function UserStats() {
                                     <p className="text-tiny uppercase font-bold">view</p>
                                     <div className="flex justify-center items-center">
                                         <h4 className="text-black text-2xl">Top Artists</h4>
-                                        <IoIosArrowForward className="text-black" size={30}/>
+                                        <IoIosArrowForward className="text-black " size={20}/>
                                     </div>
                                 </CardFooter>
                             </Card>
@@ -53,7 +53,7 @@ export default function UserStats() {
                         <motion.div whileHover={{scale: 1.08, transition: {duration: 0.3}}}
                                     className="flex justify-center">
                             <Card isFooterBlurred isPressable
-                                  className="border-none bg-background/60 dark:bg-default-100/50 md:max-w-[20vw] max-w-xs md:mx-10">
+                                  className="border-none bg-background/60 dark:bg-default-100/50 md:max-w-[20vw] max-w-xs m-5">
                                 <CardHeader className="absolute z-10 top-1 flex-col items-start"/>
                                 <Image
                                     removeWrapper
@@ -63,10 +63,10 @@ export default function UserStats() {
                                 />
                                 <CardFooter
                                     className="absolute bg-white/30 bottom-0 z-20 justify-start flex-col items-start">
-                                    <p className="text-tiny uppercase font-bold">view</p>
+                                    <p className="text-tiny uppercase font-bold text-white">view</p>
                                     <div className="flex justify-center items-center">
-                                        <h4 className="text-black text-2xl">Top Tracks</h4>
-                                        <IoIosArrowForward className="text-black" size={30}/>
+                                        <h4 className="text-2xl text-white">Top Tracks</h4>
+                                        <IoIosArrowForward className="text-white" size={20}/>
                                     </div>
                                 </CardFooter>
                             </Card>
@@ -77,7 +77,7 @@ export default function UserStats() {
                         <motion.div whileHover={{scale: 1.08, transition: {duration: 0.3}}}
                                     className="flex justify-center">
                             <Card isFooterBlurred isPressable isDisabled
-                                  className="border-none bg-background/60 dark:bg-default-100/50 md:max-w-[20vw] max-w-xs md:mx-10">
+                                  className="border-none bg-background/60 dark:bg-default-100/50 md:max-w-[20vw] max-w-xs m-5">
                                 <CardHeader className="absolute z-10 top-1 flex-col items-start"/>
                                 <Image
                                     removeWrapper
@@ -90,7 +90,7 @@ export default function UserStats() {
                                     <p className="text-tiny uppercase font-bold">view</p>
                                     <div className="flex justify-center items-center">
                                         <h4 className="text-black text-2xl">Top Genres</h4>
-                                        <IoIosArrowForward className="text-black" size={30}/>
+                                        <IoIosArrowForward className="text-black" size={20}/>
                                     </div>
                                 </CardFooter>
                             </Card>

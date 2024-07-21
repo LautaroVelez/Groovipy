@@ -38,9 +38,11 @@ export default function Tracks() {
 
     return (
         <div>
-            <div className={'w-[80vw] pb-20 justify-center flex'}>
+            <div className={'w-[80vw] justify-center items-center flex text-center'}>
+
+                <div className={'w-full flex justify-center'}>
                 <Tabs fullWidth size={'lg'} color={'success'} radius="full" variant={'solid'}
-                      className={'text-black font-bold'}
+                      className={'text-black p-10 w-full'}
                       selectedKey={selectedTerm}
                       onSelectionChange={setSelectedTerm}
                 >
@@ -60,6 +62,7 @@ export default function Tracks() {
                             <span>Last Year</span>
                         </div>}/>
                 </Tabs>
+</div>
             </div>
 
             <div className={'flex justify-between pb-2 sticky '}>
@@ -71,14 +74,14 @@ export default function Tracks() {
             <div
                 className={'flex justify-center items-center isolate rounded-3xl bg-white/2 backdrop-blur-sm shadow-lg ring-1 ring-black/5 '}>
 
-                <div className={' justify-center items-center overflow-y-auto overflow-x-hidden h-[60vh] w-full z-20'}>
+                <div className={' justify-center items-center overflow-y-auto overflow-x-hidden h-[70vh] w-full z-20'}>
 
 
                     {topTracks.map((track, index) => (
                         <>
-                            <motion.div whileHover={{scale: 1.02, transition: {duration: 0.2}}}>
+                            <motion.div whileHover={{scale: 1.02, transition: {duration: 0.2}}} key={index}>
                                 <div key={index}
-                                     className={'flex justify-between items-center relative z-20 p-5'}>
+                                     className={'flex justify-between items-center relative z-20 p-2'}>
                                     <div className={'flex w-[50%]'}>
                                         <div className={'flex items-center'}>
                                             <h1 className={'text-xl ml-2 items-center font-bold'}>{index + 1}</h1>
@@ -98,8 +101,8 @@ export default function Tracks() {
                                         className={'flex items-center text-center mx-1 text-[#2fd566]'}><FaSpotify
                                         className={'w-[20px] h-auto'}/></a></div>
                                     {track.album.images && track.album.images.length > 0 ? (
-                                        <img width="100px" height="auto" src={track.album.images[0].url}
-                                             alt="album cover" className={'rounded-3xl z-30'}/>
+                                        <img width="100" height="auto" src={track.album.images[0].url}
+                                             alt="album cover" className={'rounded-3xl z-30'} key={index}/>
 
                                     ) : (
                                         <h3>No image</h3>
