@@ -12,10 +12,11 @@ import {FaSpotify} from "react-icons/fa";
 export default function Tracks() {
     const [topTracks, setTopTracks] = useState([]);
     const [selectedTerm, setSelectedTerm] = useState("short_term");
-    const hash = window.location.hash;
-    let token = window.localStorage.getItem("token");
+     const [token, setToken] = useState(null);
 
     useEffect(() => {
+        const hash = window.location.hash;
+    let token = window.localStorage.getItem("token");
         const getUserTop = async () => {
             try {
                 const {data} = await axios.get(`https://api.spotify.com/v1/me/top/tracks?time_range=${selectedTerm}&limit=50&offset=0`, {

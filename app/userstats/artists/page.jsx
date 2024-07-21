@@ -14,10 +14,12 @@ import {FiExternalLink} from "react-icons/fi";
 export default function Artists() {
     const [topArtists, setTopArtists] = useState([]);
     const [selectedTerm, setSelectedTerm] = useState("short_term");
-    const hash = window.location.hash;
-    let token = window.localStorage.getItem("token");
+    const [token, setToken] = useState(null);
 
     useEffect(() => {
+
+        const hash = window.location.hash;
+        let token = window.localStorage.getItem("token");
         const getUserTop = async () => {
             try {
                 const {data} = await axios.get(`https://api.spotify.com/v1/me/top/artists?time_range=${selectedTerm}&limit=50&offset=0`, {
@@ -41,29 +43,29 @@ export default function Artists() {
     return (
         <div>
             <div className={'w-full justify-center items-center flex text-center'}>
-                 <div className={'w-full flex justify-center'}>
-                <Tabs fullWidth size={'lg'} color={'success'} radius="full" variant={'solid'}
-                      className={'text-black p-10 w-full'}
-                      selectedKey={selectedTerm}
-                      onSelectionChange={setSelectedTerm}
-                >
-                    <Tab key="short_term" title={
-                        <div className="flex items-center space-x-2">
-                            <IoCalendarNumberOutline/>
-                            <span>Last month</span>
-                        </div>}/>
-                    <Tab key="medium_term" title={
-                        <div className="flex items-center space-x-2">
-                            <MdOutlineCalendarMonth/>
-                            <span>Last 6 months</span>
-                        </div>}/>
-                    <Tab key="long_term" title={
-                        <div className="flex items-center space-x-2">
-                            <IoCalendarOutline/>
-                            <span>Last Year</span>
-                        </div>}/>
-                </Tabs>
-                 </div>
+                <div className={'w-full flex justify-center'}>
+                    <Tabs fullWidth size={'lg'} color={'success'} radius="full" variant={'solid'}
+                          className={'text-black p-10 w-full'}
+                          selectedKey={selectedTerm}
+                          onSelectionChange={setSelectedTerm}
+                    >
+                        <Tab key="short_term" title={
+                            <div className="flex items-center space-x-2">
+                                <IoCalendarNumberOutline/>
+                                <span>Last month</span>
+                            </div>}/>
+                        <Tab key="medium_term" title={
+                            <div className="flex items-center space-x-2">
+                                <MdOutlineCalendarMonth/>
+                                <span>Last 6 months</span>
+                            </div>}/>
+                        <Tab key="long_term" title={
+                            <div className="flex items-center space-x-2">
+                                <IoCalendarOutline/>
+                                <span>Last Year</span>
+                            </div>}/>
+                    </Tabs>
+                </div>
             </div>
 
 

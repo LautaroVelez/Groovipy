@@ -11,10 +11,11 @@ import {motion} from "framer-motion"
 export default function Genres() {
     const [topGenres, setTopGenres] = useState([]);
     const [selectedTerm, setSelectedTerm] = useState("short_term");
-    const hash = window.location.hash;
-    let token = window.localStorage.getItem("token");
 
+    const [token, setToken] = useState(null);
     useEffect(() => {
+        const hash = window.location.hash;
+        let token = window.localStorage.getItem("token");
         const getUserTop = async () => {
             try {
                 const {data} = await axios.get(`https://api.spotify.com/v1/me/top/genres?time_range=${selectedTerm}&limit=50&offset=0`, {
@@ -68,23 +69,23 @@ export default function Genres() {
                     {topGenres.map((genre, index) => (
                         <>
                             <motion.div whileHover={{scale: 1.02, transition: {duration: 0.2}}}>
-                            <div key={index}
-                                 className={'text-start flex justify-between items-center relative z-20 px-5'}>
-                                <div className={'flex'}>
-                                    <h1 className={'text-3xl font-bold ml-2'}>{index + 1}-</h1>
-                                    <h1 className={'text-3xl font-bold ml-2'}>{genre.name}</h1>
+                                <div key={index}
+                                     className={'text-start flex justify-between items-center relative z-20 px-5'}>
+                                    <div className={'flex'}>
+                                        <h1 className={'text-3xl font-bold ml-2'}>{index + 1}-</h1>
+                                        <h1 className={'text-3xl font-bold ml-2'}>{genre.name}</h1>
+                                    </div>
+                                    {genre.images && genre.images.length > 0 ? (
+
+                                        <img width={'100px'} height={'auto'} src={genre.images[0].url}
+                                             alt={'artist avatar'} className={'rounded-2xl z-30'}/>
+
+                                    ) : (
+                                        <h3>No image</h3>
+                                    )}
                                 </div>
-                                {genre.images && genre.images.length > 0 ? (
-
-                                    <img width={'100px'} height={'auto'} src={genre.images[0].url}
-                                         alt={'artist avatar'} className={'rounded-2xl z-30'}/>
-
-                                ) : (
-                                    <h3>No image</h3>
-                                )}
-                            </div>
-                            <Divider orientation={"horizontal"} className={' mb-2 mt-2'}/>
-                                </motion.div>
+                                <Divider orientation={"horizontal"} className={' mb-2 mt-2'}/>
+                            </motion.div>
                         </>
                     ))}
                 </div>
