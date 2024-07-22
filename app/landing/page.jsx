@@ -13,7 +13,7 @@ export const pacifico = Pacifico({
 
 export default function Landing() {
     const CLIENT_ID = "9e21c2f01ec54a98aeed0aa8bc9c2c11";
-    const REDIRECT_URI = "http://localhost:3000/userstats";
+    const REDIRECT_URI = "https://groovy-omega.vercel.app/userstats";
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
     const RESPONSE_TYPE = "token";
     const SCOPES = [

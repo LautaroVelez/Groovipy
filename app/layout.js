@@ -24,7 +24,7 @@ export default function RootLayout({children}) {
     const [error, setError] = useState(null);
     const [user, setUser] = useState(null);
     const CLIENT_ID = "9e21c2f01ec54a98aeed0aa8bc9c2c11";
-    const REDIRECT_URI = "http://localhost:3000/userstats";
+    const REDIRECT_URI = "https://groovy-omega.vercel.app/userstats";
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
     const RESPONSE_TYPE = "token";
     const SCOPES = ["user-read-private", "user-top-read"].join("%20");
@@ -33,7 +33,7 @@ export default function RootLayout({children}) {
     const logout = () => {
         setToken("");
         window.localStorage.removeItem("token");
-        window.location.href = "/";
+        window.location.href = "https://groovy-omega.vercel.app";
     };
 
     useEffect(() => {
