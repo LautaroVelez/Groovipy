@@ -82,7 +82,7 @@ export default function RootLayout({children}) {
         <body>
         <NextUIProvider>
 
-            <header className="fixed top-0 left-0 w-full z-20">
+            <header className="md:fixed top-0 left-0 w-full z-20 items-center flex">
                 <div className="w-full px-5 justify-between flex bg-transparent border-b items-center">
                     <Link href="/" color="foreground">
                         <div className="flex justify-start items-center text-end h-[8vh] bg-transparent">
@@ -92,16 +92,16 @@ export default function RootLayout({children}) {
                     </Link>
 
                     {token ? (
-                        <div className={'mr-20'}>
+                        <div className={'flex items-center'}>
                             <Dropdown>
                                 <DropdownTrigger>
                                     <Button variant={'outlined'}>
                                         <div className="flex items-center text-center">
-                                            <h1 className={'pr-2 text-zinc-800 font-bold md:block hidden'}>
+                                            <h1 className={'md:pr-2 pr-0 text-zinc-800 font-bold md:block hidden'}>
                                                 Hello {user?.display_name}!</h1>
                                             {user?.images && user.images.length > 0 && (
                                                 <img width="40" height="40" src={user.images[0].url} alt="avatar"
-                                                     className={'rounded-3xl'}/>
+                                                     className={'rounded-3xl '}/>
                                             )}
                                             <IoIosArrowDown className={'ml-2'}/>
                                         </div>

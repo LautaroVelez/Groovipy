@@ -15,13 +15,13 @@ export default function UserStats() {
     return (
         <div className="text-center justify-center">
             <div className="text-center font-bold w-full">
-                <div className="pb-20 md:pt-0 pt-40 text-center w-full">
-                    <div className="flex md:text-6xl text-2xl text-center items-center justify-center">
+                <div className="pb-20 md:pt-0 pt-24 text-center w-full">
+                    <div className="flex md:text-6xl text-xl text-center items-center justify-center">
                         <h1>Your music,</h1>
-                        <h1 className="greenword mx-4">your stats,</h1>
+                        <h1 className="greenword md:mx-4 mx-2">your stats,</h1>
                         <h1>your story</h1>
                     </div>
-                    <h1 className="text-xl pt-4 text-[#7E7E7] font-bold">How are we feeling today?</h1>
+                    <h1 className="text-tiny pt-4 text-[#7E7E7] font-bold">How are we feeling today?</h1>
                 </div>
 
                 <div className="md:flex block justify-center w-full">

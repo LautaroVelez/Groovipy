@@ -13,7 +13,7 @@ export const pacifico = Pacifico({
 
 export default function Landing() {
     const CLIENT_ID = "9e21c2f01ec54a98aeed0aa8bc9c2c11";
-    const REDIRECT_URI = "https://groovy-omega.vercel.app/userstats";
+    const REDIRECT_URI = "http://localhost:3000/userstats";
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
     const RESPONSE_TYPE = "token";
     const SCOPES = [
@@ -30,7 +30,7 @@ export default function Landing() {
                     <h1 className="">statistics with</h1>
                     <h1 className={`${pacifico.className} greenword md:text-6xl text-4xl text-center`}>groovy</h1>
 
-                <a className={'text-xl greenword aLink'}
+                <a className={'md:text-2xl text-xl greenword aLink'}
                    href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPES}`}>Connect
                     with Spotify </a>
 
