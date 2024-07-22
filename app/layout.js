@@ -118,7 +118,7 @@ export default function RootLayout({children}) {
                         </div>
                     ) : (
                         <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPES}`}>
-                            <Button className="bg-[#1E452E] text-[#1ED760] mr-5" size="md"
+                            <Button className="bg-[#1E452E] text-[#1ED760] md:mr-5" size="md"
                                     startContent={<FaSpotify/>}>
                                 Connect
                             </Button>

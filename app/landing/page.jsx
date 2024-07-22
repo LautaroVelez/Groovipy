@@ -36,7 +36,7 @@ export default function Landing() {
 
                 </div>
 
-                <div className="md:justify-end md:flex justify-center w-full md:w-[30vw]">
+                <div className="md:justify-end flex justify-center w-full md:w-[30vw]">
                     <Image
                         src={gif}
                         alt="Groovy GIF"
