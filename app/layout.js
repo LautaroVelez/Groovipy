@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import "./globals.css";
 import {NextUIProvider, Link, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button} from "@nextui-org/react";
@@ -13,14 +13,13 @@ import {IoIosArrowDown} from "react-icons/io";
 import {Metadata} from "next";
 import Head from "next/head";
 
-
-const pacifico = Pacifico({
-    weight: '400',
-    subsets: ['latin'],
-});
-
+  const pacifico = Pacifico({
+        weight: '400',
+        subsets: ['latin'],
+    });
 
 export default function RootLayout({children}) {
+
     const [token, setToken] = useState("");
     const [error, setError] = useState(null);
     const [user, setUser] = useState(null);
@@ -30,10 +29,6 @@ export default function RootLayout({children}) {
     const RESPONSE_TYPE = "token";
     const SCOPES = ["user-read-private", "user-top-read"].join("%20");
 
-    const metadata = {
-        title: 'Groovy',
-        description: '...',
-    }
 
     const logout = () => {
         setToken("");
@@ -82,6 +77,7 @@ export default function RootLayout({children}) {
         <html lang="en">
         <Head>
             <title>Groovy</title>
+            <meta property="og:title" content="Groovy" key="title"/>
         </Head>
         <body>
         <NextUIProvider>
@@ -90,8 +86,8 @@ export default function RootLayout({children}) {
                 <div className="w-full mx-10 justify-between flex bg-transparent border-b items-center">
                     <Link href="/" color="foreground">
                         <div className="flex justify-start items-center text-end h-[8vh] bg-transparent">
-                            <Image src={groovy} width={70} height="auto" alt="groovy" priority/>
-                            <h3 className={`${pacifico.className} text-xl`}>groovy</h3>
+                            <Image src={groovy} width={40} height="auto" alt="groovy" priority/>
+                            <h3 className={`${pacifico.className} ml-2 text-xl`}>groovy</h3>
                         </div>
                     </Link>
 

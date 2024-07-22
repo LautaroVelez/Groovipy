@@ -8,6 +8,7 @@ import {IoCalendarOutline} from "react-icons/io5";
 import '@/app/globals.css'
 import {motion} from "framer-motion"
 import {FaSpotify} from "react-icons/fa";
+import Head from "next/head";
 
 export default function Tracks() {
     const [topTracks, setTopTracks] = useState([]);
@@ -36,6 +37,7 @@ export default function Tracks() {
     }, [selectedTerm, token]);
 
     return (
+
         <div>
             <div className={'w-full justify-center items-center flex text-center'}>
                 <div className={'w-full flex justify-center'}>
