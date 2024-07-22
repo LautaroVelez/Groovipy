@@ -83,7 +83,7 @@ export default function RootLayout({children}) {
         <NextUIProvider>
 
             <header className="fixed top-0 left-0 w-full z-20">
-                <div className="w-full mx-10 justify-between flex bg-transparent border-b items-center">
+                <div className="w-full px-5 justify-between flex bg-transparent border-b items-center">
                     <Link href="/" color="foreground">
                         <div className="flex justify-start items-center text-end h-[8vh] bg-transparent">
                             <Image src={groovy} width={40} height="auto" alt="groovy" priority/>
@@ -118,7 +118,7 @@ export default function RootLayout({children}) {
                         </div>
                     ) : (
                         <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPES}`}>
-                            <Button className="bg-[#1E452E] text-[#1ED760] mr-20" size="md"
+                            <Button className="bg-[#1E452E] text-[#1ED760] mr-5" size="md"
                                     startContent={<FaSpotify/>}>
                                 Connect
                             </Button>

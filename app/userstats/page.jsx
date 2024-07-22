@@ -29,7 +29,7 @@ export default function UserStats() {
                         <motion.div whileHover={{scale: 1.08, transition: {duration: 0.3}}}
                                     className="flex justify-center">
                             <Card isFooterBlurred isPressable
-                                  className="border-none bg-background/60 dark:bg-default-100/50 md:max-w-[20vw] max-w-xs m-5 ">
+                                  className="border-none bg-background/60 dark:bg-default-100/50 md:w-[20vw] w-[80%] m-5 ">
                                 <CardHeader className="absolute z-10 top-1 flex-col items-start"/>
                                 <Image
                                     removeWrapper
@@ -53,7 +53,7 @@ export default function UserStats() {
                         <motion.div whileHover={{scale: 1.08, transition: {duration: 0.3}}}
                                     className="flex justify-center">
                             <Card isFooterBlurred isPressable
-                                  className="border-none bg-background/60 dark:bg-default-100/50 md:max-w-[20vw] max-w-xs m-5">
+                                  className="border-none bg-background/60 dark:bg-default-100/50 md:w-[20vw] w-[80%] m-5">
                                 <CardHeader className="absolute z-10 top-1 flex-col items-start"/>
                                 <Image
                                     removeWrapper
@@ -77,7 +77,7 @@ export default function UserStats() {
                         <motion.div whileHover={{scale: 1.08, transition: {duration: 0.3}}}
                                     className="flex justify-center">
                             <Card isFooterBlurred isPressable isDisabled
-                                  className="border-none bg-background/60 dark:bg-default-100/50 md:max-w-[20vw] max-w-xs m-5">
+                                  className="border-none bg-background/60 dark:bg-default-100/50 md:w-[20vw] w-[80%] m-5">
                                 <CardHeader className="absolute z-10 top-1 flex-col items-start"/>
                                 <Image
                                     removeWrapper
