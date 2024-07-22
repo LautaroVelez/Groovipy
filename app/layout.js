@@ -9,13 +9,16 @@ import {Pacifico} from "next/font/google";
 import {FaSpotify} from "react-icons/fa";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import { IoIosArrowDown } from "react-icons/io";
+import {IoIosArrowDown} from "react-icons/io";
+import {Metadata} from "next";
+import Head from "next/head";
 
 
 const pacifico = Pacifico({
     weight: '400',
     subsets: ['latin'],
 });
+
 
 export default function RootLayout({children}) {
     const [token, setToken] = useState("");
@@ -26,6 +29,11 @@ export default function RootLayout({children}) {
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
     const RESPONSE_TYPE = "token";
     const SCOPES = ["user-read-private", "user-top-read"].join("%20");
+
+    const metadata = {
+        title: 'Groovy',
+        description: '...',
+    }
 
     const logout = () => {
         setToken("");
@@ -72,8 +80,12 @@ export default function RootLayout({children}) {
 
     return (
         <html lang="en">
+        <Head>
+            <title>Groovy</title>
+        </Head>
         <body>
         <NextUIProvider>
+
             <header className="fixed top-0 left-0 w-full z-20">
                 <div className="w-full mx-10 justify-between flex bg-transparent border-b items-center">
                     <Link href="/" color="foreground">
@@ -95,13 +107,14 @@ export default function RootLayout({children}) {
                                                 <img width="40" height="40" src={user.images[0].url} alt="avatar"
                                                      className={'rounded-3xl'}/>
                                             )}
-                                              <IoIosArrowDown className={'ml-2'}/>
+                                            <IoIosArrowDown className={'ml-2'}/>
                                         </div>
                                     </Button>
                                 </DropdownTrigger>
                                 <DropdownMenu aria-label="Static Actions">
                                     <DropdownItem key="menu" href={"/userstats"}>Menu</DropdownItem>
-                                    <DropdownItem key="logout" className="text-danger" color="danger" onClick={logout}>
+                                    <DropdownItem key="logout" className="text-danger" color="danger"
+                                                  onClick={logout}>
                                         Logout
                                     </DropdownItem>
                                 </DropdownMenu>
@@ -109,7 +122,8 @@ export default function RootLayout({children}) {
                         </div>
                     ) : (
                         <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPES}`}>
-                            <Button className="bg-[#1E452E] text-[#1ED760] mr-20" size="md" startContent={<FaSpotify/>}>
+                            <Button className="bg-[#1E452E] text-[#1ED760] mr-20" size="md"
+                                    startContent={<FaSpotify/>}>
                                 Connect
                             </Button>
                         </a>
@@ -128,6 +142,7 @@ export default function RootLayout({children}) {
                     {children}
                 </div>
             </div>
+
         </NextUIProvider>
         </body>
         </html>
