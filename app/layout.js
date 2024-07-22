@@ -1,5 +1,4 @@
 "use client";
-
 import "./globals.css";
 import {NextUIProvider, Link, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button} from "@nextui-org/react";
 import Image from "next/image";
@@ -138,7 +137,6 @@ export default function RootLayout({children}) {
                     {children}
                 </div>
             </div>
-
         </NextUIProvider>
         </body>
         </html>

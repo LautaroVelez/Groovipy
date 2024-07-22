@@ -53,7 +53,7 @@ export default function Artists() {
         };
 
         window.addEventListener('resize', handleResize);
-        handleResize(); // Check initial size
+        handleResize();
 
 
     }, [selectedTerm]);
@@ -62,7 +62,7 @@ export default function Artists() {
         <div >
             <div className="flex justify-center items-center">
             <div className="w-full">
-                <Tabs fullWidth size={'lg'} color={'success'} radius={radius} variant={'solid'}
+                <Tabs fullWidth size={'lg'} color={'success'} radius={"lg"} variant={'solid'}
                       className={'text-black p-10 md:w-full '}
                       selectedKey={selectedTerm}
                       isVertical={rezise}

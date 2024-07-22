@@ -21,7 +21,7 @@ export default function UserStats() {
                         <h1 className="greenword md:mx-4 mx-2">your stats,</h1>
                         <h1>your story</h1>
                     </div>
-                    <h1 className="text-tiny pt-4 text-[#7E7E7] font-bold">How are we feeling today?</h1>
+                    <h1 className="text-tiny md:text-xl pt-4 text-[#7E7E7] font-bold">How are we feeling today?</h1>
                 </div>
 
                 <div className="md:flex block justify-center w-full">
