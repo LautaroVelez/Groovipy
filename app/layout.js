@@ -9,13 +9,12 @@ import {FaSpotify} from "react-icons/fa";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {IoIosArrowDown} from "react-icons/io";
-import {Metadata} from "next";
 import Head from "next/head";
 
-  const pacifico = Pacifico({
-        weight: '400',
-        subsets: ['latin'],
-    });
+const pacifico = Pacifico({
+    weight: '400',
+    subsets: ['latin'],
+});
 
 export default function RootLayout({children}) {
 
@@ -28,11 +27,10 @@ export default function RootLayout({children}) {
     const RESPONSE_TYPE = "token";
     const SCOPES = ["user-read-private", "user-top-read"].join("%20");
 
-
     const logout = () => {
         setToken("");
         window.localStorage.removeItem("token");
-        window.location.href = "https://groovy-omega.vercel.app";
+        window.location.href = "/";
     };
 
     useEffect(() => {
@@ -51,6 +49,9 @@ export default function RootLayout({children}) {
         setToken(token);
 
         const getUser = async () => {
+            if (!token) {
+                return;
+            }
             try {
                 const {data} = await axios.get("https://api.spotify.com/v1/me", {
                     headers: {
@@ -63,6 +64,7 @@ export default function RootLayout({children}) {
                     logout();
                 } else {
                     setError(error.response?.data?.error?.message || error.message);
+                    console.error("Error fetching user data:", error.message);
                 }
             }
         };
